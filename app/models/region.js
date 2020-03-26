@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Region.associate = function(models) {
     // associations can be defined here
+    Region.belongsToMany(models.Idea, { through: 'IdeaRegions', foreignKey: 'regionId'})
   };
   return Region;
 };

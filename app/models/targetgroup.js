@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   TargetGroup.associate = function(models) {
     // associations can be defined here
+    TargetGroup.belongsToMany(models.Idea, { through: 'IdeaTargetGroups', foreignKey: 'targetGroupId'})
   };
   return TargetGroup;
 };

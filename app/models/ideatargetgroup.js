@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   IdeaTargetGroup.associate = function(models) {
     // associations can be defined here
     IdeaTargetGroup.belongsTo(models.Idea, { foreignKey: 'ideaId'});
-    IdeaTargetGroup.belongsTo(models.TargetGroups, { foreignKey: 'targetGroupId'});
+    IdeaTargetGroup.belongsTo(models.TargetGroup, { foreignKey: 'targetGroupId'});
   };
   return IdeaTargetGroup;
 };

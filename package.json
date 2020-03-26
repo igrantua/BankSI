@@ -2,10 +2,10 @@
   "name": "socialideasbank",
   "version": "1.0.0",
   "description": "Node.js Rest Api with Express, Sequelize & PostgreSQL",
-  "main": "server.js",
+  "main": "./app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node ./app/index.js"
+    "start":"nodemon ./app/index.js"
   },
   "author": "igrantua",
   "license": "ISC",

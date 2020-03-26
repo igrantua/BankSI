@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     Idea.belongsToMany(models.Region, { through:'IdeaRegions', foreignKey: 'regionId'});
     Idea.belongsToMany(models.Status, { through:'IdeaStatuses', foreignKey: 'statusId'});
     Idea.belongsToMany(models.Target, { through:'IdeaTargets', foreignKey: 'targetId'});
-    Idea.belongsToMany(models.TargetGroups, { through:'IdeaTargetGroups', foreignKey: 'targetGroupId'});
-    
+    Idea.belongsToMany(models.TargetGroup, { through:'IdeaTargetGroups', foreignKey: 'targetGroupId'});
+
   };
   return Idea;
 };
