@@ -1,0 +1,13 @@
+sudo docker-compose up
+sudo docker-compose start
+npx sequelize-cli
+
+A.belongsTo(B) keeps the foreign key in the source model (A), therefore the referenced key is in the target model, hence the usage of targetKey.
+
+A.hasOne(B) and A.hasMany(B) keep the foreign key in the target model (B), therefore the referenced key is in the source model, hence the usage of sourceKey.
+
+A.belongsToMany(B) involves an extra table (the junction table), therefore both sourceKey and targetKey are usable, with sourceKey corresponding to some field in A (the source) and targetKey corresponding to some field in B (the target).
+
+model:generate --name User --attributes firstName:string,lastName:string,email:string,mobile:string,avatar:blob
+model:generate --name Idea --attributes author:string,title:string,body:string,image:blob,file:blob,likeCount:integer,likeUserId:array,commentCount:integer,status:string,category:string,region:string,target:string,target_group:string,userId:integer
+model:generate --name Comment --attributes comment:string,commentAuthor:string,commentLikeCount:integer,userId:integer,ideaId:integer
