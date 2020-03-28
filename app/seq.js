@@ -41,6 +41,15 @@ const { sequelize, User, Idea, Comment, Category, Status, Region, Target, Target
 // console.log(role1);
 // console.log(role1.User.map(el => el.name));
 
+const update = await Category.update({"categoryTitle":"Hernya"}, {
+  where: { id: 3 }
+});
+const updated = await Category.findOne({
+  where: { id: 3 }
+});
+console.log(updated);
+
+
 
   try {
     await sequelize.close();
