@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Status.associate = function(models) {
     // associations can be defined here
-    Status.belongsTo(models.Idea, { foreignKey: 'ideaId', targetKey: 'id'});
+    Status.belongsTo(models.Idea, { foreignKey: 'id', targetKey: 'statusId'});
   };
   return Status;
 };
