@@ -8,14 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      author: {
-        type: Sequelize.STRING
-      },
+      // author: {
+      //   type: Sequelize.STRING
+      // },
       title: {
         type: Sequelize.STRING
       },
       body: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       image: {
         type: Sequelize.BLOB
@@ -35,16 +35,16 @@ module.exports = {
       // commentCount: {
       //   type: Sequelize.INTEGER
       // },
-      statusId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-		    allowNull: false,
-		    references: {
-			    model: 'Statuses',
-			    key: 'id',
-			    // as: 'status'
-		    }
-      },
+      // statusId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+		  //   allowNull: true,
+		  //   references: {
+			//     model: 'Statuses',
+			//     key: 'id',
+			//     // as: 'status'
+		  //   }
+      // },
       // category: {
       //   type: Sequelize.STRING
       // },
@@ -65,6 +65,16 @@ module.exports = {
 			    model: 'Users',
 			    key: 'id',
 			    as: 'author'
+		    }
+      },
+      statusId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+		    allowNull: true,
+		    references: {
+			    model: 'Statuses',
+			    key: 'id',
+			    // as: 'status'
 		    }
       },
       createdAt: {

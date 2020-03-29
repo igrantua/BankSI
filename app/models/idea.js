@@ -1,15 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Idea = sequelize.define('Idea', {
-    author: DataTypes.STRING,
+    // author: DataTypes.STRING,
     title: DataTypes.STRING,
     body: DataTypes.STRING,
     image: DataTypes.BLOB,
     file: DataTypes.BLOB,
     likeCount: DataTypes.INTEGER,
+    dislikeCount: DataTypes.INTEGER,
     // likeUserId: DataTypes.ARRAY,
-    commentCount: DataTypes.INTEGER,
-    // status: DataTypes.STRING,
+    // commentCount: DataTypes.INTEGER,
+    statusId: DataTypes.INTEGER,
     // category: DataTypes.STRING,
     // region: DataTypes.STRING,
     // target: DataTypes.STRING,
