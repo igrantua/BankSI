@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Idea.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id'}); // idea foreign, user target
     Idea.hasMany(models.Comment, { foreignKey: 'ideaId', targetKey: 'id'});
+    Idea.hasMany(models.Status, { foreignKey: 'ideaId', targetKey: 'id'});
     Idea.belongsToMany(models.Category, { through:'IdeaCategories', foreignKey: 'ideaId'});
     Idea.belongsToMany(models.Region, { through:'IdeaRegions', foreignKey: 'regionId'});
-    Idea.belongsToMany(models.Status, { through:'IdeaStatuses', foreignKey: 'statusId'});
     Idea.belongsToMany(models.Target, { through:'IdeaTargets', foreignKey: 'targetId'});
     Idea.belongsToMany(models.TargetGroup, { through:'IdeaTargetGroups', foreignKey: 'targetGroupId'});
 

@@ -26,15 +26,25 @@ module.exports = {
       likeCount: {
         type: Sequelize.INTEGER
       },
+      dislikeCount: {
+        type: Sequelize.INTEGER
+      },
       // likeUserId: {
       //   type: Sequelize.ARRAY(Sequelize.INTEGER)
       // },
-      commentCount: {
-        type: Sequelize.INTEGER
-      },
-      // status: {
-      //   type: Sequelize.STRING
+      // commentCount: {
+      //   type: Sequelize.INTEGER
       // },
+      statusId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+		    allowNull: false,
+		    references: {
+			    model: 'Statuses',
+			    key: 'id',
+			    // as: 'status'
+		    }
+      },
       // category: {
       //   type: Sequelize.STRING
       // },
@@ -54,7 +64,7 @@ module.exports = {
 		    references: {
 			    model: 'Users',
 			    key: 'id',
-			    // as: 'user'
+			    as: 'author'
 		    }
       },
       createdAt: {
