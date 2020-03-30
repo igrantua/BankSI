@@ -1,20 +1,25 @@
-// 'use strict';
+'use strict';
 
-// module.exports = {
-//   up: (queryInterface, Sequelize) => {
-//     return queryInterface.bulkInsert('Categories', [{
-//       categoryTitle: 'hz why im doing this',
-//       createdAt: new Date(),
-//       updatedAt: new Date()
-//     },
-//     {
-//       categoryTitle: 'exactly know why im doing this',
-//       createdAt: new Date(),
-//       updatedAt: new Date()
-//     }
-//   ]);
-//   },
-//   down: (queryInterface, Sequelize) => {
-//     return queryInterface.bulkDelete('Categories', null, {});
-//   }
-// };
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Categories', [{
+      categoryTitle: 'Health Care',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      categoryTitle: 'Social Entrepreneurship',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      categoryTitle: 'Smth stupid',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ]);
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Categories', null, {});
+  }
+};

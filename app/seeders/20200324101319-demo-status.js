@@ -2,24 +2,24 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Regions', [{
-      regionTitle: 'Zolotonosha',
+    return queryInterface.bulkInsert('Statuses', [{
+      statusTitle: 'Idea only',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      regionTitle: 'Cherkasy',
+      statusTitle: 'In progress',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      regionTitle: 'Southern Carolina',
+      statusTitle: 'Realized',
       createdAt: new Date(),
       updatedAt: new Date()
     }
   ]);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Regions', null, {});
+    return queryInterface.bulkDelete('Statuses', null, {});
   }
 };
