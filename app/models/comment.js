@@ -1,9 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define('Comment', {
-    comment: DataTypes.STRING,
-    commentAuthor: DataTypes.STRING,
-    commentLikeCount: DataTypes.INTEGER,
+    comment: DataTypes.ARRAY(DataTypes.TEXT),
+    // commentAuthor: DataTypes.STRING,
+    likeCount: DataTypes.INTEGER,
+    dislikeCount: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     ideaId: DataTypes.INTEGER
   }, {});

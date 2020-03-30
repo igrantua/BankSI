@@ -95,6 +95,71 @@ const deleteIdea = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
+
+// Comments
+const createComment = async (req, res) => {
+  try {
+    const comment = await Comment.create(req.body);
+    return res.status(201).json({
+      comment,
+    });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}
+const getAllComments = async (req, res) => {
+  try {
+    const comments = await Comment.findAll();
+    return res.status(200).json({ comments });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const getCommentById = async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const comment = await Comment.findOne({
+      where: { id: commentId },
+
+    });
+    if (comment) {
+      return res.status(200).json({ comment });
+    }
+    return res.status(404).send('Comment with the specified ID does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const updateComment = async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const updated = await Comment.update(req.body, {
+      where: { id: commentId }
+    });
+    if (updated) {
+      const updatedComment = await Comment.findOne({ where: { id: commentId } });
+      return res.status(200).json({ updatedComment });
+    }
+    throw new Error('Comment not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const deleteComment = async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const deleted = await Comment.destroy({
+      where: { id: commentId }
+    });
+    if (deleted) {
+      return res.status(204).send("Comment deleted");
+    }
+    throw new Error("Comment not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 // Categories
 
 const createCategory = async (req, res) => {
@@ -160,6 +225,265 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+// Regions
+const createRegion = async (req, res) => {
+  try {
+    const region = await Region.create(req.body);
+    return res.status(201).json({
+      region,
+    });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}
+const getAllRegions = async (req, res) => {
+  try {
+    const regions = await Region.findAll();
+    return res.status(200).json({ regions });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const getRegionById = async (req, res) => {
+  try {
+    const { regionId } = req.params;
+    const region = await Region.findOne({
+      where: { id: regionId },
+
+    });
+    if (region) {
+      return res.status(200).json({ region });
+    }
+    return res.status(404).send('Region with the specified ID does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const updateRegion = async (req, res) => {
+  try {
+    const { regionId } = req.params;
+    const updated = await Region.update(req.body, {
+      where: { id: regionId }
+    });
+    if (updated) {
+      const updatedRegion = await Region.findOne({ where: { id: regionId } });
+      return res.status(200).json({ updatedRegion });
+    }
+    throw new Error('Region not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const deleteRegion = async (req, res) => {
+  try {
+    const { regionId } = req.params;
+    const deleted = await Region.destroy({
+      where: { id: regionId }
+    });
+    if (deleted) {
+      return res.status(204).send("Region deleted");
+    }
+    throw new Error("Region not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+// Targets
+
+const createTarget = async (req, res) => {
+  try {
+    const target = await Target.create(req.body);
+    return res.status(201).json({
+      target,
+    });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}
+const getAllTargets = async (req, res) => {
+  try {
+    const targets = await Target.findAll();
+    return res.status(200).json({ targets });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const getTargetById = async (req, res) => {
+  try {
+    const { targetId } = req.params;
+    const target = await Target.findOne({
+      where: { id: targetId },
+
+    });
+    if (target) {
+      return res.status(200).json({ target });
+    }
+    return res.status(404).send('Target with the specified ID does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const updateTarget = async (req, res) => {
+  try {
+    const { targetId } = req.params;
+    const updated = await Target.update(req.body, {
+      where: { id: targetId }
+    });
+    if (updated) {
+      const updatedTarget = await Target.findOne({ where: { id: targetId } });
+      return res.status(200).json({ updatedTarget });
+    }
+    throw new Error('Target not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const deleteTarget = async (req, res) => {
+  try {
+    const { targetId } = req.params;
+    const deleted = await Target.destroy({
+      where: { id: targetId }
+    });
+    if (deleted) {
+      return res.status(204).send("Target deleted");
+    }
+    throw new Error("Target not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+// TargetGroups
+
+const createTargetGroup = async (req, res) => {
+  try {
+    const targetGroup = await TargetGroup.create(req.body);
+    return res.status(201).json({
+      targetGroup,
+    });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}
+const getAllTargetGroups = async (req, res) => {
+  try {
+    const targetGroups = await TargetGroup.findAll();
+    return res.status(200).json({ targetGroups });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const getTargetGroupById = async (req, res) => {
+  try {
+    const { targetGroupId } = req.params;
+    const targetGroup = await TargetGroup.findOne({
+      where: { id: targetGroupId },
+
+    });
+    if (targetGroup) {
+      return res.status(200).json({ targetGroup });
+    }
+    return res.status(404).send('TargetGroup with the specified ID does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const updateTargetGroup = async (req, res) => {
+  try {
+    const { targetGroupId } = req.params;
+    const updated = await TargetGroup.update(req.body, {
+      where: { id: targetGroupId }
+    });
+    if (updated) {
+      const updatedTargetGroup = await TargetGroup.findOne({ where: { id: targetGroupId } });
+      return res.status(200).json({ updatedTargetGroup });
+    }
+    throw new Error('TargetGroup not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const deleteTargetGroup = async (req, res) => {
+  try {
+    const { targetGroupId } = req.params;
+    const deleted = await TargetGroup.destroy({
+      where: { id: targetGroupId }
+    });
+    if (deleted) {
+      return res.status(204).send("TargetGroup deleted");
+    }
+    throw new Error("TargetGroup not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+// Statuses
+
+const createStatus = async (req, res) => {
+  try {
+    const status = await Status.create(req.body);
+    return res.status(201).json({
+      status,
+    });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}
+const getAllStatuses = async (req, res) => {
+  try {
+    const statuses = await Status.findAll();
+    return res.status(200).json({ statuss });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const getStatusById = async (req, res) => {
+  try {
+    const { statusId } = req.params;
+    const status = await Status.findOne({
+      where: { id: statusId },
+
+    });
+    if (status) {
+      return res.status(200).json({ status });
+    }
+    return res.status(404).send('Status with the specified ID does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+const updateStatus = async (req, res) => {
+  try {
+    const { statusId } = req.params;
+    const updated = await Status.update(req.body, {
+      where: { id: statusId }
+    });
+    if (updated) {
+      const updatedStatus = await Status.findOne({ where: { id: statusId } });
+      return res.status(200).json({ updatedStatus });
+    }
+    throw new Error('Status not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const deleteStatus = async (req, res) => {
+  try {
+    const { statusId } = req.params;
+    const deleted = await Status.destroy({
+      where: { id: statusId }
+    });
+    if (deleted) {
+      return res.status(204).send("Status deleted");
+    }
+    throw new Error("Status not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   createIdea,
   getAllIdeas,
@@ -170,5 +494,30 @@ module.exports = {
   getAllCategories,
   getCategoryById,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  createRegion,
+  getAllRegions,
+  getRegionById,
+  updateRegion,
+  deleteRegion,
+  createTarget,
+  getAllTargets,
+  getTargetById,
+  updateTarget,
+  deleteTarget,
+  createTargetGroup,
+  getAllTargetGroups,
+  getTargetGroupById,
+  updateTargetGroup,
+  deleteTargetGroup,
+  createStatus,
+  getAllStatuses,
+  getStatusById,
+  updateStatus,
+  deleteStatus,
+  createComment,
+  getAllComments,
+  getCommentById,
+  updateComment,
+  deleteComment
 }

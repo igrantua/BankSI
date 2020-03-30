@@ -9,12 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       comment: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
-      commentAuthor: {
-        type: Sequelize.STRING
+      // commentAuthor: {
+      //   type: Sequelize.STRING
+      // },
+      likeCount: {
+        type: Sequelize.INTEGER
       },
-      commentLikeCount: {
+      dislikeCount: {
         type: Sequelize.INTEGER
       },
       userId: {
@@ -24,7 +27,7 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-          as: 'user'
+          as: 'author'
         }
       },
       ideaId: {

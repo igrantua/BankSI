@@ -70,7 +70,7 @@ module.exports = {
       statusId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
-		    // allowNull: true,
+		    // allowNull: false,
 		    references: {
 			    model: 'Statuses',
 			    key: 'id',
