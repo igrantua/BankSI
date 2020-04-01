@@ -1,6 +1,5 @@
-const { sequelize, User, Idea, Comment, Category, Status, Region, Target, TargetGroup  } = require('../models');
+const { sequelize, User, Idea, Comment, Category, Status, Region, Target, TargetGroup, Aim  } = require('../models');
 
-// Users
 
 // Users
 const createUser = async (req, res) => {
@@ -71,8 +70,49 @@ const deleteUser = async (req, res) => {
 const createIdea = async (req, res) => {
   try {
     const idea = await Idea.create(req.body);
+    if (req.body.categoryId) {
+      await idea.addCategory(req.body.categoryId);
+    }
+    if (req.body.regionId) {
+      await idea.addRegion(req.body.regionId);
+    }
+    if (req.body.targetId) {
+      await idea.addTarget(req.body.targetId);
+    }
+    if (req.body.targetGroupId) {
+      await idea.addTargetGroup(req.body.targetGroupId);
+    }
+    newIdea = await Idea.findOne({
+      where: { id: idea.id },
+      include: [
+        {
+          model: User,
+          as: 'author'
+        },
+        {
+          model: Category,
+          as: 'category'
+        },
+        {
+          model: Status,
+          as: 'status'
+        },
+        {
+          model: Region,
+          as: 'region'
+        },
+        {
+          model: Target,
+          as: 'target'
+        },
+        {
+          model: TargetGroup,
+          as: 'targetGroup'
+        },
+      ]
+    });
     return res.status(201).json({
-      idea,
+      newIdea,
     });
   } catch (error) {
     return res.status(500).json({error: error.message})
@@ -122,6 +162,36 @@ const getIdeaById = async (req, res) => {
     const { ideaId } = req.params;
     const idea = await Idea.findOne({
       where: { id: ideaId },
+      include: [
+        {
+          model: User,
+          as: 'author'
+        },
+        {
+          model: Category,
+          as: 'category'
+        },
+        {
+          model: Status,
+          as: 'status'
+        },
+        {
+          model: Region,
+          as: 'region'
+        },
+        {
+          model: Target,
+          as: 'target'
+        },
+        {
+          model: TargetGroup,
+          as: 'targetGroup'
+        },
+        {
+          model: Comment,
+          as: 'comments'
+        }
+      ]
 
     });
     if (idea) {
@@ -500,7 +570,7 @@ const createStatus = async (req, res) => {
 const getAllStatuses = async (req, res) => {
   try {
     const statuses = await Status.findAll();
-    return res.status(200).json({ statuss });
+    return res.status(200).json({ statuses });
   } catch (error) {
     return res.status(500).send(error.message);
   }
