@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const controllers = require('../controllers');
+const {ideas, users, statuses, categories, targets, targetGroups, regions, comments } = require('../controllers');
 
 const router = Router();
 
@@ -7,65 +7,66 @@ router.get('/', (req, res) => res.send('Welcome'))
 
 // Ideas
 
-router.post('/idea', controllers.createIdea);
-router.get('/ideas', controllers.getAllIdeas);
-router.get('/idea/:ideaId', controllers.getIdeaById); // not included categories etc
-router.put('/idea/:ideaId', controllers.updateIdea);
-router.delete('/idea/:ideaId', controllers.deleteIdea);
+router.post('/idea', ideas.createIdea);
+router.get('/ideas', ideas.getAllIdeas);
+router.get('/idea/:ideaId', ideas.getIdeaById); // not included categories etc
+router.put('/idea/:ideaId', ideas.updateIdea);
+router.delete('/idea/:ideaId', ideas.deleteIdea);
 
 // Users
 
-router.post('/user', controllers.createUser);
-router.get('/users', controllers.getAllUsers);
-router.get('/user/:userId', controllers.getUserById);
-router.put('/user/:userId', controllers.updateUser);
-router.delete('/user/:userId', controllers.deleteUser);
+router.post('/user', users.createUser);
+router.get('/users', users.getAllUsers);
+router.get('/user/:userId', users.getUserById);
+router.put('/user/:userId', users.updateUser);
+router.delete('/user/:userId', users.deleteUser);
+
 // Categories
 
-router.post('/category', controllers.createCategory);
-router.get('/categories', controllers.getAllCategories);
-router.get('/category/:categoryId', controllers.getCategoryById);
-router.put('/category/:categoryId', controllers.updateCategory);
-router.delete('/category/:categoryId', controllers.deleteCategory);
+router.post('/category', categories.createCategory);
+router.get('/categories', categories.getAllCategories);
+router.get('/category/:categoryId', categories.getCategoryById);
+router.put('/category/:categoryId', categories.updateCategory);
+router.delete('/category/:categoryId', categories.deleteCategory);
 
 // Regions
 
-router.post('/region', controllers.createRegion);
-router.get('/regions', controllers.getAllRegions);
-router.get('/region/:regionId', controllers.getRegionById);
-router.put('/region/:regionId', controllers.updateRegion);
-router.delete('/region/:regionId', controllers.deleteRegion);
+router.post('/region', regions.createRegion);
+router.get('/regions', regions.getAllRegions);
+router.get('/region/:regionId', regions.getRegionById);
+router.put('/region/:regionId', regions.updateRegion);
+router.delete('/region/:regionId', regions.deleteRegion);
 
 // Targets
 
-router.post('/target', controllers.createTarget);
-router.get('/targets', controllers.getAllTargets);
-router.get('/target/:targetId', controllers.getTargetById);
-router.put('/target/:targetId', controllers.updateTarget);
-router.delete('/target/:targetId', controllers.deleteTarget);
+router.post('/target', targets.createTarget);
+router.get('/targets', targets.getAllTargets);
+router.get('/target/:targetId', targets.getTargetById);
+router.put('/target/:targetId', targets.updateTarget);
+router.delete('/target/:targetId', targets.deleteTarget);
 
 // TargetGroups
 
-router.post('/targetGroup', controllers.createTargetGroup);
-router.get('/targetGroups', controllers.getAllTargetGroups);
-router.get('/targetGroup/:targetGroupId', controllers.getTargetGroupById);
-router.put('/targetGroup/:targetGroupId', controllers.updateTargetGroup);
-router.delete('/targetGroup/:targetGroupId', controllers.deleteTargetGroup);
+router.post('/targetGroup', targetGroups.createTargetGroup);
+router.get('/targetGroups', targetGroups.getAllTargetGroups);
+router.get('/targetGroup/:targetGroupId', targetGroups.getTargetGroupById);
+router.put('/targetGroup/:targetGroupId', targetGroups.updateTargetGroup);
+router.delete('/targetGroup/:targetGroupId', targetGroups.deleteTargetGroup);
 
 // Statuses
 
-router.post('/status', controllers.createStatus);
-router.get('/statuses', controllers.getAllStatuses);
-router.get('/status/:statusId', controllers.getStatusById);
-router.put('/status/:statusId', controllers.updateStatus);
-router.delete('/status/:statusId', controllers.deleteStatus);
+router.post('/status', statuses.createStatus);
+router.get('/statuses', statuses.getAllStatuses);
+router.get('/status/:statusId', statuses.getStatusById);
+router.put('/status/:statusId', statuses.updateStatus);
+router.delete('/status/:statusId', statuses.deleteStatus);
 
 // Comments
 
-router.post('/comment', controllers.createComment);
-router.get('/comments', controllers.getAllComments);
-router.get('/comment/:commentId', controllers.getCommentById);
-router.put('/comment/:commentId', controllers.updateComment);
-router.delete('/comment/:commentId', controllers.deleteComment);
+router.post('/comment', comments.createComment);
+router.get('/comments', comments.getAllComments);
+router.get('/comment/:commentId', comments.getCommentById);
+router.put('/comment/:commentId', comments.updateComment);
+router.delete('/comment/:commentId', comments.deleteComment);
 
 module.exports = router;

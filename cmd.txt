@@ -1,6 +1,6 @@
 sudo docker-compose up
 sudo docker-compose start
-npx sequelize-cli
+npx sequelize-cli help
 
 A.belongsTo(B) keeps the foreign key in the source model (A), therefore the referenced key is in the target model, hence the usage of targetKey.
 
