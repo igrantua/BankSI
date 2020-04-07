@@ -7,66 +7,68 @@ router.get('/', (req, res) => res.send('Welcome'))
 
 // Ideas
 
-router.post('/idea', ideas.createIdea);
+router.post('/ideas', ideas.createIdea);
 router.get('/ideas', ideas.getAllIdeas);
-router.get('/idea/:ideaId', ideas.getIdeaById); // not included categories etc
-router.put('/idea/:ideaId', ideas.updateIdea);
-router.delete('/idea/:ideaId', ideas.deleteIdea);
+router.get('/ideas/statuses/:statusId', ideas.getIdeasByStatus);
+router.get('/ideas/users/:userId', ideas.getIdeasByUser);
+router.get('/ideas/:ideaId', ideas.getIdeaById);
+router.put('/ideas/:ideaId', ideas.updateIdea);
+router.delete('/ideas/:ideaId', ideas.deleteIdea);
 
 // Users
 
-router.post('/user', users.createUser);
+router.post('/users', users.createUser);
 router.get('/users', users.getAllUsers);
-router.get('/user/:userId', users.getUserById);
-router.put('/user/:userId', users.updateUser);
-router.delete('/user/:userId', users.deleteUser);
+router.get('/users/:userId', users.getUserById);
+router.put('/users/:userId', users.updateUser);
+router.delete('/users/:userId', users.deleteUser);
 
 // Categories
 
-router.post('/category', categories.createCategory);
+router.post('/categories', categories.createCategory);
 router.get('/categories', categories.getAllCategories);
-router.get('/category/:categoryId', categories.getCategoryById);
-router.put('/category/:categoryId', categories.updateCategory);
-router.delete('/category/:categoryId', categories.deleteCategory);
+router.get('/categories/:categoryId', categories.getCategoryById);
+router.put('/categories/:categoryId', categories.updateCategory);
+router.delete('/categories/:categoryId', categories.deleteCategory);
 
 // Regions
 
-router.post('/region', regions.createRegion);
+router.post('/regions', regions.createRegion);
 router.get('/regions', regions.getAllRegions);
-router.get('/region/:regionId', regions.getRegionById);
-router.put('/region/:regionId', regions.updateRegion);
-router.delete('/region/:regionId', regions.deleteRegion);
+router.get('/regions/:regionId', regions.getRegionById);
+router.put('/regions/:regionId', regions.updateRegion);
+router.delete('/regions/:regionId', regions.deleteRegion);
 
 // Targets
 
-router.post('/target', targets.createTarget);
+router.post('/targets', targets.createTarget);
 router.get('/targets', targets.getAllTargets);
-router.get('/target/:targetId', targets.getTargetById);
-router.put('/target/:targetId', targets.updateTarget);
-router.delete('/target/:targetId', targets.deleteTarget);
+router.get('/targets/:targetId', targets.getTargetById);
+router.put('/targets/:targetId', targets.updateTarget);
+router.delete('/targets/:targetId', targets.deleteTarget);
 
 // TargetGroups
 
-router.post('/targetGroup', targetGroups.createTargetGroup);
+router.post('/targetGroups', targetGroups.createTargetGroup);
 router.get('/targetGroups', targetGroups.getAllTargetGroups);
-router.get('/targetGroup/:targetGroupId', targetGroups.getTargetGroupById);
-router.put('/targetGroup/:targetGroupId', targetGroups.updateTargetGroup);
-router.delete('/targetGroup/:targetGroupId', targetGroups.deleteTargetGroup);
+router.get('/targetGroups/:targetGroupId', targetGroups.getTargetGroupById);
+router.put('/targetGroups/:targetGroupId', targetGroups.updateTargetGroup);
+router.delete('/targetGroups/:targetGroupId', targetGroups.deleteTargetGroup);
 
 // Statuses
 
-router.post('/status', statuses.createStatus);
+router.post('/statuses', statuses.createStatus);
 router.get('/statuses', statuses.getAllStatuses);
-router.get('/status/:statusId', statuses.getStatusById);
-router.put('/status/:statusId', statuses.updateStatus);
-router.delete('/status/:statusId', statuses.deleteStatus);
+router.get('/statuses/:statusId', statuses.getStatusById);
+router.put('/statuses/:statusId', statuses.updateStatus);
+router.delete('/statuses/:statusId', statuses.deleteStatus);
 
 // Comments
 
-router.post('/comment', comments.createComment);
+router.post('/comments', comments.createComment);
 router.get('/comments', comments.getAllComments);
-router.get('/comment/:commentId', comments.getCommentById);
-router.put('/comment/:commentId', comments.updateComment);
-router.delete('/comment/:commentId', comments.deleteComment);
+router.get('/comments/:commentId', comments.getCommentById);
+router.put('/comments/:commentId', comments.updateComment);
+router.delete('/comments/:commentId', comments.deleteComment);
 
 module.exports = router;
