@@ -6,6 +6,7 @@ const statuses = require('./statuses');
 const targets = require('./targets');
 const targetGroups = require('./targetGroups');
 const users = require('./users');
+const uploads = require('./uploads');
 
 module.exports = {
   categories,
@@ -15,5 +16,6 @@ module.exports = {
   statuses,
   targets,
   targetGroups,
-  users
+  users,
+  uploads
 }

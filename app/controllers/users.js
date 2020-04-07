@@ -2,7 +2,14 @@ const { sequelize, User, Idea, Comment, Category, Status, Region, Target, Target
 
 const createUser = async (req, res) => {
   try {
-    const user = await User.create(req.body);
+    const user = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      mobile: req.body.mobile,
+      avatar: req.file.buffer,
+    });
+    console.log(req)
     return res.status(201).json({
       user,
     });
