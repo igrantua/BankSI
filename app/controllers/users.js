@@ -43,7 +43,13 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const updated = await User.update(req.body, {
+    const updated = await User.update({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      mobile: req.body.mobile,
+      avatar: req.file.buffer,
+    }, {
       where: { id: userId }
     });
     if (updated) {

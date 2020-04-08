@@ -231,7 +231,16 @@ const getIdeaById = async (req, res) => {
 const updateIdea = async (req, res) => {
   try {
     const { ideaId } = req.params;
-    const updated = await Idea.update(req.body, {
+    const updated = await Idea.update({
+      title: req.body.title,
+      body: req.body.body,
+      userId: req.body.userId,
+      statusId: req.body.statusId,
+      likeCount: req.body.likeCount,
+      dislikeCount: req.body.dislikeCount,
+      image: req.files.image[0].buffer,
+      file: req.files.file[0].buffer,
+    }, {
       where: { id: ideaId }
     });
     if (updated) {

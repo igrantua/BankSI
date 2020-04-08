@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {ideas, users, statuses, categories, targets, targetGroups, regions, comments, uploads } = require('../controllers');
+const {ideas, users, statuses, categories, targets, targetGroups, regions, comments, uploads} = require('../controllers');
 const router = Router();
 
 router.get('/', (req, res) => res.send('Welcome'))
@@ -11,7 +11,7 @@ router.get('/ideas', ideas.getAllIdeas);
 router.get('/ideas/statuses/:statusId', ideas.getIdeasByStatus);
 router.get('/ideas/users/:userId', ideas.getIdeasByUser);
 router.get('/ideas/:ideaId', ideas.getIdeaById);
-router.put('/ideas/:ideaId', ideas.updateIdea);
+router.put('/ideas/:ideaId', uploads.imageFile, ideas.updateIdea);
 router.delete('/ideas/:ideaId', ideas.deleteIdea);
 
 // Users
@@ -19,7 +19,7 @@ router.delete('/ideas/:ideaId', ideas.deleteIdea);
 router.post('/users', uploads.avatar, users.createUser);
 router.get('/users', users.getAllUsers);
 router.get('/users/:userId', users.getUserById);
-router.put('/users/:userId', users.updateUser);
+router.put('/users/:userId', uploads.avatar, users.updateUser);
 router.delete('/users/:userId', users.deleteUser);
 
 // Categories
