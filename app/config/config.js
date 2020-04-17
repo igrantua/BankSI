@@ -14,8 +14,8 @@ const config = {
       min: 0,
       idle: 5000,
       acquire: 5000,
-      evict: 5000
-    }
+      evict: 5000,
+    },
   },
 };
 

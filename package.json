@@ -5,7 +5,8 @@
   "main": "./app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./app/index.js"
+    "start": "nodemon ./app/index.js",
+    "lint": "eslint --fix app/**"
   },
   "author": "igrantua",
   "license": "ISC",
@@ -53,6 +54,7 @@
       "plugin:prettier/recommended"
     ],
     "rules": {
+      "strict": "off",
       "no-plusplus": "off",
       "no-bitwise": "off",
       "no-console": "off",

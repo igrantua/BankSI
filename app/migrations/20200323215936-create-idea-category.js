@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('IdeaCategories', {
@@ -6,7 +7,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       categoryId: {
         type: Sequelize.INTEGER,
@@ -16,7 +17,7 @@ module.exports = {
           model: 'Categories',
           key: 'id',
           // as: 'category'
-        }
+        },
       },
       ideaId: {
         type: Sequelize.INTEGER,
@@ -26,19 +27,20 @@ module.exports = {
           model: 'Ideas',
           key: 'id',
           // as: 'idea'
-        }
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
+  // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('IdeaCategories');
-  }
+  },
 };

@@ -1,4 +1,4 @@
-const { sequelize, User, Idea, Comment, Category, Status, Region, Target, TargetGroup  } = require('../models');
+const { Category } = require('../models');
 
 const createCategory = async (req, res) => {
   try {
@@ -7,9 +7,9 @@ const createCategory = async (req, res) => {
       category,
     });
   } catch (error) {
-    return res.status(500).json({error: error.message})
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.findAll();
@@ -17,13 +17,12 @@ const getAllCategories = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const getCategoryById = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const category = await Category.findOne({
       where: { id: categoryId },
-
     });
     if (category) {
       return res.status(200).json({ category });
@@ -32,12 +31,12 @@ const getCategoryById = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const updateCategory = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const updated = await Category.update(req.body, {
-      where: { id: categoryId }
+      where: { id: categoryId },
     });
     if (updated) {
       const updatedCategory = await Category.findOne({ where: { id: categoryId } });
@@ -52,12 +51,12 @@ const deleteCategory = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const deleted = await Category.destroy({
-      where: { id: categoryId }
+      where: { id: categoryId },
     });
     if (deleted) {
-      return res.status(204).send("Category deleted");
+      return res.status(204).send('Category deleted');
     }
-    throw new Error("Category not found");
+    throw new Error('Category not found');
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -68,5 +67,5 @@ module.exports = {
   getAllCategories,
   getCategoryById,
   updateCategory,
-  deleteCategory
-}
+  deleteCategory,
+};

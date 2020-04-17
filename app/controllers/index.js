@@ -17,5 +17,5 @@ module.exports = {
   targets,
   targetGroups,
   users,
-  uploads
-}
+  uploads,
+};

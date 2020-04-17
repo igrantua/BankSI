@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Ideas', {
@@ -6,57 +7,58 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       body: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
+        type: Sequelize.ARRAY(Sequelize.TEXT),
       },
       image: {
-        type: Sequelize.BLOB
+        type: Sequelize.BLOB,
       },
       file: {
-        type: Sequelize.BLOB
+        type: Sequelize.BLOB,
       },
       likeCount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       dislikeCount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
-		    onDelete: 'CASCADE',
-		    // allowNull: false,
-		    references: {
-			    model: 'Users',
-			    key: 'id',
-			    as: 'author'
-		    }
+        onDelete: 'CASCADE',
+        // allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'author',
+        },
       },
       statusId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
-		    // allowNull: false,
-		    references: {
-			    model: 'Statuses',
-			    key: 'id',
-			    // as: 'status'
-		    }
+        // allowNull: false,
+        references: {
+          model: 'Statuses',
+          key: 'id',
+          // as: 'status'
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
+  // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Ideas');
-  }
+  },
 };

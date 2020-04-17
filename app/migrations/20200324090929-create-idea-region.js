@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('IdeaRegions', {
@@ -6,7 +9,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       regionId: {
         type: Sequelize.INTEGER,
@@ -16,7 +19,7 @@ module.exports = {
           model: 'Regions',
           key: 'id',
           // as: 'region'
-        }
+        },
       },
       ideaId: {
         type: Sequelize.INTEGER,
@@ -26,19 +29,19 @@ module.exports = {
           model: 'Ideas',
           key: 'id',
           // as: 'idea'
-        }
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('IdeaRegions');
-  }
+  },
 };

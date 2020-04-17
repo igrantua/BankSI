@@ -1,4 +1,4 @@
-const { sequelize, User, Idea, Comment, Category, Status, Region, Target, TargetGroup  } = require('../models');
+const { Status } = require('../models');
 
 const createStatus = async (req, res) => {
   try {
@@ -7,9 +7,9 @@ const createStatus = async (req, res) => {
       status,
     });
   } catch (error) {
-    return res.status(500).json({error: error.message})
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 const getAllStatuses = async (req, res) => {
   try {
     const statuses = await Status.findAll();
@@ -17,13 +17,12 @@ const getAllStatuses = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const getStatusById = async (req, res) => {
   try {
     const { statusId } = req.params;
     const status = await Status.findOne({
       where: { id: statusId },
-
     });
     if (status) {
       return res.status(200).json({ status });
@@ -32,12 +31,12 @@ const getStatusById = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const updateStatus = async (req, res) => {
   try {
     const { statusId } = req.params;
     const updated = await Status.update(req.body, {
-      where: { id: statusId }
+      where: { id: statusId },
     });
     if (updated) {
       const updatedStatus = await Status.findOne({ where: { id: statusId } });
@@ -52,12 +51,12 @@ const deleteStatus = async (req, res) => {
   try {
     const { statusId } = req.params;
     const deleted = await Status.destroy({
-      where: { id: statusId }
+      where: { id: statusId },
     });
     if (deleted) {
-      return res.status(204).send("Status deleted");
+      return res.status(204).send('Status deleted');
     }
-    throw new Error("Status not found");
+    throw new Error('Status not found');
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -68,5 +67,5 @@ module.exports = {
   getAllStatuses,
   getStatusById,
   updateStatus,
-  deleteStatus
-}
+  deleteStatus,
+};

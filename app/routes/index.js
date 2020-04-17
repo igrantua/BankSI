@@ -1,8 +1,19 @@
 const { Router } = require('express');
-const {ideas, users, statuses, categories, targets, targetGroups, regions, comments, uploads} = require('../controllers');
+const {
+  ideas,
+  users,
+  statuses,
+  categories,
+  targets,
+  targetGroups,
+  regions,
+  comments,
+  uploads,
+} = require('../controllers');
+
 const router = Router();
 
-router.get('/', (req, res) => res.send('Welcome'))
+router.get('/', (req, res) => res.send('Welcome'));
 
 // Ideas
 

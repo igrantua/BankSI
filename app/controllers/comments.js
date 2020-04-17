@@ -1,4 +1,4 @@
-const { sequelize, User, Idea, Comment, Category, Status, Region, Target, TargetGroup  } = require('../models');
+const { Comment } = require('../models');
 
 const createComment = async (req, res) => {
   try {
@@ -7,9 +7,9 @@ const createComment = async (req, res) => {
       comment,
     });
   } catch (error) {
-    return res.status(500).json({error: error.message})
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 const getAllComments = async (req, res) => {
   try {
     const comments = await Comment.findAll();
@@ -17,13 +17,12 @@ const getAllComments = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const getCommentById = async (req, res) => {
   try {
     const { commentId } = req.params;
     const comment = await Comment.findOne({
       where: { id: commentId },
-
     });
     if (comment) {
       return res.status(200).json({ comment });
@@ -32,12 +31,12 @@ const getCommentById = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.message);
   }
-}
+};
 const updateComment = async (req, res) => {
   try {
     const { commentId } = req.params;
     const updated = await Comment.update(req.body, {
-      where: { id: commentId }
+      where: { id: commentId },
     });
     if (updated) {
       const updatedComment = await Comment.findOne({ where: { id: commentId } });
@@ -52,12 +51,12 @@ const deleteComment = async (req, res) => {
   try {
     const { commentId } = req.params;
     const deleted = await Comment.destroy({
-      where: { id: commentId }
+      where: { id: commentId },
     });
     if (deleted) {
-      return res.status(204).send("Comment deleted");
+      return res.status(204).send('Comment deleted');
     }
-    throw new Error("Comment not found");
+    throw new Error('Comment not found');
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -68,5 +67,5 @@ module.exports = {
   getAllComments,
   getCommentById,
   updateComment,
-  deleteComment
-}
+  deleteComment,
+};
