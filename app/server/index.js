@@ -3,6 +3,15 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const statusCodes = require('http').STATUS_CODES;
 
+const pino = require('pino');
+const pinoExpress = require('pino-express');
+
+const logger = pinoExpress(
+  pino({
+    prettyPrint: true,
+  }),
+);
+
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes = require('../routes');
@@ -18,7 +27,7 @@ const corsOptions = {
 server.use(cors(corsOptions));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
-
+server.use(logger);
 // server.use(express.json());
 
 server.use('/api', routes);
