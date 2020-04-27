@@ -1,5 +1,3 @@
-const strategy = require('./authStrategy');
+const strategy = require('./passport.local');
 
-module.exports = {
-  strategy,
-};
+module.exports = { strategy };
