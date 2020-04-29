@@ -4,11 +4,12 @@ const { User } = require('../models');
 const strategy = new LocalStrategy(
   {
     usernameField: 'email',
-    passwordField: 'password',
   },
   // eslint-disable-next-line func-names
-  function(email, password, done) {
-    User.findOne({ where: { username: email } }, function(err, user) {
+  function(username, password, done) {
+    // eslint-disable-next-line object-shorthand
+    // eslint-disable-next-line func-names
+    User.findOne({ where: { email: username } }, function(err, user) {
       if (err) {
         return done(err);
       }

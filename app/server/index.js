@@ -1,50 +1,37 @@
+/* eslint-disable func-names */
 const express = require('express');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // const uuid = require('uuid/v4');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const statusCodes = require('http').STATUS_CODES;
-
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-
 const bodyParser = require('body-parser');
-
 const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
 // const strategy = require('../auth');
 // const RedisStore = require('connect-redis')(session);
-
 const logger = require('pino-http')({ prettyPrint: true });
-
 const cors = require('cors')({
   origin: '*',
   allowMethods: 'GET,PUT,POST,DELETE,OPTIONS',
 });
-
+const { User } = require('../models');
 const strategy = require('../auth');
-// const initializePassport = require('../auth')
-
-// initializePassport(
-//   passport,
-//   email => users.find(user => user.email === email),
-//   id => users.find(user => user.id === id)
-// )
 const routes = require('../routes');
 
 // configure passport.js to use the local strategy
 passport.use('passport-local', strategy);
 
-// here is where you make a call to the database
-// to find the user based on their username or email address
-// for now, we'll just pretend we found that it was users[0]
-
-// tell passport how to serialize the user
-passport.serializeUser((user, done) => {
+passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
-passport.deserializeUser((user, done) => {
-  done(null, user.id);
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
 });
 
 const server = express();

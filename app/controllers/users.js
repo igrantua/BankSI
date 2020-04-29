@@ -2,16 +2,20 @@ const { User } = require('../models');
 
 const createUser = async (req, res) => {
   try {
-    const user = await User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      mobile: req.body.mobile,
-      avatar: req.file.buffer,
-    });
-    return res.status(201).json({
-      user,
-    });
+    const user = await User.findOne({ where: { email: req.body.email } });
+    if (!user) {
+      const newUser = await User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        mobile: req.body.mobile,
+        avatar: req.file.buffer,
+      });
+      return res.status(201).json({
+        newUser,
+      });
+    }
+    throw new Error('User already exists');
   } catch (error) {
     // return next(error);
     return res.status(500).json({ error: error.message });
@@ -41,9 +45,9 @@ const getUserById = async (req, res) => {
 };
 const getUserByEmail = async (req, res) => {
   try {
-    const { userEmail } = req.params;
+    // const { userEmail } = req.body.email;
     const user = await User.findOne({
-      where: { email: userEmail },
+      where: { email: req.body.email },
     });
     if (user) {
       return res.status(200).json({ user });
@@ -97,6 +101,7 @@ module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  getUserByEmail,
   updateUser,
   deleteUser,
 };
