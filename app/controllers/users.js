@@ -1,4 +1,9 @@
+const passport = require('passport');
 const { User } = require('../models');
+
+// register login logout
+
+// const loginUser =
 
 const createUser = async (req, res) => {
   try {
