@@ -1,4 +1,6 @@
-const { User } = require('../models');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { User, Role } = require('../models');
 
 // register login logout
 
@@ -9,10 +11,10 @@ const createUser = async (req, res) => {
     const user = await User.findOne({ where: { email: req.body.email } });
     if (!user) {
       const newUser = await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        userName: req.body.userName,
         email: req.body.email,
         mobile: req.body.mobile,
+        password: req.body.password,
         avatar: req.file.buffer,
       });
       return res.status(201).json({
