@@ -3,25 +3,19 @@
 module.exports = {
   // eslint-disable-next-line no-unused-vars
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Users', [
+    return queryInterface.bulkInsert('Roles', [
       {
-        userName: 'John Doe',
-        email: 'example@example.com',
-        mobile: '0982147832',
+        roleName: 'User',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        userName: 'Jane Doe',
-        email: 'example@example2.com',
-        mobile: '0982142532',
+        roleName: 'Admin',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        userName: 'Jane Hawkeye',
-        email: 'example@example3.com',
-        mobile: '0952142532',
+        roleName: 'Moderator',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -29,6 +23,6 @@ module.exports = {
   },
   // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Roles', null, {});
   },
 };
