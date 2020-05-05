@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       mobile: DataTypes.STRING,
       password: DataTypes.STRING,
       avatar: DataTypes.BLOB,
+      roleId: DataTypes.INTEGER,
     },
     {
       hooks: {

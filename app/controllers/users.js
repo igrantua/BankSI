@@ -8,7 +8,10 @@ const { User, Role } = require('../models');
 
 const createUser = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { email: req.body.email } });
+    const user = await User.findOne({
+      // attributes: ['userName', 'email', 'mobile', 'password', 'avatar'],
+      where: { email: req.body.email },
+    });
     if (!user) {
       const newUser = await User.create({
         userName: req.body.userName,
@@ -16,6 +19,7 @@ const createUser = async (req, res) => {
         mobile: req.body.mobile,
         password: req.body.password,
         avatar: req.file.buffer,
+        roleId: req.body.roleId || '1',
       });
       return res.status(201).json({
         newUser,

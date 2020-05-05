@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line func-names
   Role.associate = function(models) {
     // associations can be defined here
-    Role.hasMany(models.User, { foreignKey: 'roleId', sourceKey: 'id' });
+    Role.hasMany(models.User, { foreignKey: 'roleId', targetKey: 'id' });
     // Role.belongsToMany(models.User, {
     //   through: 'UserRole',
     //   foreignKey: 'roleId',

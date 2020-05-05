@@ -14,11 +14,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      {
-        roleName: 'Moderator',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
     ]);
   },
   // eslint-disable-next-line no-unused-vars
