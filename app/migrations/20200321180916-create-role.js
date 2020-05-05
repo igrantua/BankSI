@@ -2,24 +2,15 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Roles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userName: {
+      roleName: {
         type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
-      },
-      mobile: {
-        type: Sequelize.STRING,
-      },
-      avatar: {
-        type: Sequelize.BLOB,
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +24,6 @@ module.exports = {
   },
   // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Roles');
   },
 };

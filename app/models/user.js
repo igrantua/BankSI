@@ -4,8 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
+      userName: DataTypes.STRING,
       email: DataTypes.STRING,
       mobile: DataTypes.STRING,
       avatar: DataTypes.BLOB,
@@ -17,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.hasMany(models.Idea, { foreignKey: 'userId', sourceKey: 'id' }); // user - source, idea - foreign
     User.hasMany(models.Comment, { foreignKey: 'userId', sourceKey: 'id' });
+    User.belongsToMany(models.Role, {
+      through: 'UserRole',
+      foreignKey: 'userId',
+      as: 'user',
+    });
   };
   return User;
 };

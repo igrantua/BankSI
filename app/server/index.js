@@ -11,10 +11,9 @@ const cors = require('cors')({
   origin: '*',
   allowMethods: 'GET,PUT,POST,DELETE,OPTIONS',
 });
-const { User } = require('../models');
+// const { User } = require('../models');
 
 const routes = require('../routes');
-
 
 const server = express();
 server.use(helmet());
