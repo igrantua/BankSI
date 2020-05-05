@@ -18,6 +18,9 @@ module.exports = {
       mobile: {
         type: Sequelize.STRING,
       },
+      password: {
+        type: Sequelize.STRING,
+      },
       avatar: {
         type: Sequelize.BLOB,
       },
