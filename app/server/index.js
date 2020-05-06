@@ -1,6 +1,5 @@
 /* eslint-disable func-names */
 const express = require('express');
-const bcrypt = require('bcrypt');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const statusCodes = require('http').STATUS_CODES;
@@ -11,7 +10,6 @@ const cors = require('cors')({
   origin: '*',
   allowMethods: 'GET,PUT,POST,DELETE,OPTIONS',
 });
-// const { User } = require('../models');
 
 const routes = require('../routes');
 
@@ -23,7 +21,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use(logger);
-server.use('/api', routes);
+server.use('/', routes);
 
 // Invalid route handler (404)
 server.use((req, res) => {
