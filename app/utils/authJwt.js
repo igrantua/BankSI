@@ -24,55 +24,16 @@ const verifyToken = (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   const user = await User.findByPk(req.userId);
-  const userRoles = await user.getRoles();
-  for (let i = 0; i < userRoles.length; i++) {
-    if (userRoles[i].name === 'Admin') {
-      next();
-      return;
-    }
+  if (user.body.roleId === 2) {
+    next();
+    return;
   }
-
   res.status(403).send({
     message: 'Require Admin Role!',
-  });
-};
-
-const isModerator = async (req, res, next) => {
-  const user = await User.findByPk(req.userId);
-  const userRoles = await user.getRoles();
-  for (let i = 0; i < userRoles.length; i++) {
-    if (userRoles[i].name === 'Moderator') {
-      next();
-      return;
-    }
-  }
-
-  res.status(403).send({
-    message: 'Require Moderator Role!',
-  });
-};
-
-const isModeratorOrAdmin = async (req, res, next) => {
-  const user = await User.findByPk(req.userId);
-  const userRoles = await user.getRoles();
-  for (let i = 0; i < userRoles.length; i++) {
-    if (userRoles[i].name === 'Moderator') {
-      next();
-      return;
-    }
-    if (userRoles[i].name === 'Admin') {
-      next();
-      return;
-    }
-  }
-  res.status(403).send({
-    message: 'Require Moderator or Admin Role!',
   });
 };
 
 module.exports = {
   verifyToken,
   isAdmin,
-  isModerator,
-  isModeratorOrAdmin,
 };

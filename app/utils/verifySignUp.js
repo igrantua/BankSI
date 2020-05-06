@@ -1,10 +1,10 @@
-const { User, Role } = require('../models');
+const { User } = require('../models');
 
-const checkUsernameAndEmail = async (req, res, next) => {
+const checkUserNameAndEmail = async (req, res, next) => {
   // Username
   const userUsername = await User.findOne({
     where: {
-      username: req.body.username,
+      userName: req.body.userName,
     },
   });
   if (userUsername) {
@@ -27,22 +27,17 @@ const checkUsernameAndEmail = async (req, res, next) => {
   next();
 };
 
-const checkRole = (req, res, next) => {
-  if (req.body.roles) {
-    for (let i = 0; i < req.body.roles.length; i++) {
-      if (!Role.includes(req.body.roles[i])) {
-        res.status(400).send({
-          message: `Failed! Role ${req.body.roles[i]} does not exist `,
-        });
-        return;
-      }
-    }
-  }
-
-  next();
-};
+// const checkRole = (req, res, next) => {
+//   if (req.body.roleId !== 1 && req.body.roleId !== 2) {
+//     res.status(400).send({
+//       message: `Failed! Role ${req.body.roleId} does not exist `,
+//     });
+//     return;
+//   }
+//   next();
+// };
 
 module.exports = {
-  checkUsernameAndEmail,
-  checkRole,
+  checkUserNameAndEmail,
+  // checkRole,
 };

@@ -4,28 +4,49 @@ const { User, Role } = require('../models');
 
 // register login logout
 
-// const loginUser =
+// register/signup
 
 const createUser = async (req, res) => {
+  try {
+    const newUser = await User.create({
+      userName: req.body.userName,
+      email: req.body.email,
+      mobile: req.body.mobile,
+      password: req.body.password,
+      avatar: req.file.buffer,
+      roleId: req.body.roleId || '1', // user is default role (1), admin is (2).
+    });
+    return res.status(201).json({
+      newUser,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({
       // attributes: ['userName', 'email', 'mobile', 'password', 'avatar'],
       where: { email: req.body.email },
     });
     if (!user) {
-      const newUser = await User.create({
-        userName: req.body.userName,
-        email: req.body.email,
-        mobile: req.body.mobile,
-        password: req.body.password,
-        avatar: req.file.buffer,
-        roleId: req.body.roleId || '1',
-      });
-      return res.status(201).json({
-        newUser,
+      return res.status(404).send({ message: 'User not found.' });
+    }
+    const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        accessToken: null,
+        message: 'Invalid Password!',
       });
     }
-    throw new Error('User already exists');
+    const token = jwt.sign({ id: user.id }, process.env.SECRET, {
+      expiresIn: '24h',
+    });
+    return res.status(201).json({
+      user,
+      token,
+      message: 'create user successfully',
+    });
   } catch (error) {
     // return next(error);
     return res.status(500).json({ error: error.message });
@@ -109,6 +130,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   createUser,
+  loginUser,
   getAllUsers,
   getUserById,
   getUserByEmail,

@@ -10,6 +10,7 @@ const {
   comments,
   uploads,
 } = require('../controllers');
+const { checkUserNameAndEmail } = require('../utils').verifySignUp;
 
 const router = Router();
 
@@ -27,7 +28,8 @@ router.delete('/ideas/:ideaId', ideas.deleteIdea);
 
 // Users
 
-router.post('/users', uploads.avatar, users.createUser);
+router.post('/users', uploads.avatar, checkUserNameAndEmail, users.createUser);
+router.post('/users/login', users.loginUser);
 router.get('/users', users.getAllUsers);
 router.get('/users/:userId', users.getUserById);
 router.put('/users/:userId', uploads.avatar, users.updateUser);
